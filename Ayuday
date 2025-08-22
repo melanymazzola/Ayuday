@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuentra a Nuestros Niños</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Encabezado */
+        header {
+            background: linear-gradient(135deg, #1a73e8 0%, #6c5ce7 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        nav {
+            background-color: #0d47a1;
+            padding: 10px 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #ffcb05;
+        }
+        
+        /* Sección principal */
+        .hero {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a73e8" opacity="0.1"/><path d="M0 0L100 100" stroke="%231a73e8" stroke-width="1" opacity="0.1"/><path d="M100 0L0 100" stroke="%231a73e8" stroke-width="1" opacity="0.1"/></svg>');
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #1a237e;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff5722;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #e64a19;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Sección de niños desaparecidos */
+        .missing-children {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1a237e;
+            font-size: 2rem;
+        }
+        
+        .children-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .child-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .child-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .child-image {
+            width: 100%;
+            height: 250px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 4rem;
+        }
+        
+        .child-info {
+            padding: 20px;
+        }
+        
+        .child-info h3 {
+            margin-bottom: 10px;
+            color: #1a237e;
+        }
+        
+        .child-info p {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        /* Formularios */
+        .form-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Recursos */
+        .resources {
+            padding: 60px 0;
+        }
+        
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-card h3 {
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a237e;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .contact-info {
+            margin: 20px 0;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .children-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <div class="logo">👶 Encuentra a Nuestros Niños</div>
+            <p>Juntos podemos traerlos a casa</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#reportar">Reportar Desaparición</a></li>
+                <li><a href="#buscar">Buscar Niños</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Sección principal -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h2>Ayudamos a encontrar niños desaparecidos</h2>
+            <p>Esta plataforma está dedicada a reunir a familias con sus hijos desaparecidos. Si buscas a un ser querido o tienes información sobre algún caso, por favor contáctanos.</p>
+            <a href="#reportar" class="btn">Reportar un caso</a>
+        </div>
+    </section>
+    
+    <!-- Sección de niños desaparecidos -->
+    <section id="buscar" class="missing-children">
+        <div class="container">
+            <h2 class="section-title">Niños Desaparecidos</h2>
+            <div class="children-grid">
+                <!-- Tarjeta de niño desaparecido 1 -->
+                <div class="child-card">
+                    <div class="child-image">👦</div>
+                    <div class="child-info">
+                        <h3>Carlos Rodríguez</h3>
+                        <p><strong>Edad:</strong> 8 años</p>
+                        <p><strong>Desaparecido desde:</strong> 15/05/2023</p>
+                        <p><strong>Última vez visto:</strong> Parque Central, Ciudad</p>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta de niño desaparecido 2 -->
+                <div class="child-card">
+                    <div class="child-image">👧</div>
+                    <div class="child-info">
+                        <h3>María González</h3>
+                        <p><strong>Edad:</strong> 10 años</p>
+                        <p><strong>Desaparecido desde:</strong> 22/06/2023</p>
+                        <p><strong>Última vez visto:</strong> Escuela Primaria</p>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta de niño desaparecido 3 -->
+                <div class="child-card">
+                    <div class="child-image">👦</div>
+                    <div class="child-info">
+                        <h3>Javier López</h3>
+                        <p><strong>Edad:</strong> 7 años</p>
+                        <p><strong>Desaparecido desde:</strong> 03/04/2023</p>
+                        <p><strong>Última vez visto:</strong> Mercado Municipal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Formulario para reportar -->
+    <section id="reportar" class="form-section">
+        <div class="container">
+            <h2 class="section-title">Reportar Desaparición</h2>
+            <div class="form-container">
+                <form id="report-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo del niño</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edad">Edad</label>
+                        <input type="number" id="edad" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fecha">Fecha de desaparición</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lugar">Último lugar visto</label>
+                        <input type="text" id="lugar" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="descripcion">Descripción física y vestimenta</label>
+                        <textarea id="descripcion" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contacto">Información de contacto</label>
+                        <input type="text" id="contacto" required>
+                    </div>
+                    
+                    <button type="submit" class="btn">Enviar Reporte</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Recursos -->
+    <section id="recursos" class="resources">
+        <div class="container">
+            <h2 class="section-title">Recursos de Ayuda</h2>
+            <div class="resource-list">
+                <div class="resource-card">
+                    <h3>Líneas de Emergencia</h3>
+                    <p>Si tienes información sobre un niño desaparecido, contacta inmediatamente:</p>
+                    <p><strong>Policía:</strong> 911</p>
+                    <p><strong>Línea Nacional:</strong> 123-456-7890</p>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Consejos de Prevención</h3>
+                    <ul>
+                        <li>Enseña a tus hijos información de contacto</li>
+                        <li>Establece puntos de encuentro seguros</li>
+                        <li>Supervisa siempre las actividades en línea</li>
+                        <li>Mantén fotos recientes de tus hijos</li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Qué hacer si desaparece un niño</h3>
+                    <ol>
+                        <li>Busca inmediatamente en el área cercana</li>
+                        <li>Contacta a las autoridades de inmediato</li>
+                        <li>Proporciona una foto reciente y descripción detallada</li>
+                        <li>Llama a amigos, familiares y vecinos</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pie de página -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Contacto</h3>
+                <div class="contact-info">
+                    <p>Email: info@encuentranuestrosninos.org</p>
+                    <p>Teléfono: (123) 456-7890</p>
+                    <p>Dirección: Calle Principal #123, Ciudad</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#">📱 Facebook</a>
+                    <a href="#">📱 Twitter</a>
+                    <a href="#">📱 Instagram</a>
+                </div>
+                
+                <p>&copy; 2023 Encuentra a Nuestros Niños. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // JavaScript para el formulario
+        document.getElementById('report-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aquí normalmente enviarías los datos a un servidor
+            alert('Gracias por reportar. Nos contactaremos pronto para verificar la información.');
+            this.reset();
+        });
+        
+        // Navegación suave al hacer clic en los enlaces del menú
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
